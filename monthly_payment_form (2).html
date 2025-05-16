@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monthly Payment Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+    }
+    .form-container {
+      background: white;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 6px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .message {
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Monthly Payment Form</h2>
+    <form id="paymentForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="Enter your name" required />
+
+      <label for="toPay">To Pay:</label>
+      <input type="text" id="toPay" placeholder="Enter recipient's name" required />
+
+      <label for="month">Select Month:</label>
+      <select id="month" required>
+        <option value="">--Select Month--</option>
+        <option>January</option>
+        <option>February</option>
+        <option>March</option>
+        <option>April</option>
+        <option>May</option>
+        <option>June</option>
+        <option>July</option>
+        <option>August</option>
+        <option>September</option>
+        <option>October</option>
+        <option>November</option>
+        <option>December</option>
+      </select>
+
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount" placeholder="Enter amount" min="1" required />
+
+      <button type="submit">Submit Payment</button>
+    </form>
+
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('paymentForm');
+    const messageDiv = document.getElementById('message');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const toPay = document.getElementById('toPay').value.trim();
+      const month = document.getElementById('month').value;
+      const amount = document.getElementById('amount').value;
+
+      if (!name || !toPay || !month || !amount) {
+        messageDiv.style.color = 'red';
+        messageDiv.textContent = 'Please fill all fields correctly.';
+        return;
+      }
+
+      messageDiv.style.color = 'green';
+      messageDiv.textContent = `Thank you, ${name}. Payment of ₹${amount} for ${month} to ${toPay} is recorded.`;
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
